@@ -19,16 +19,29 @@ def test_player_map():
         assert player_object['rating'].mu == 0
 
 
-def test_transform_ts_to_dict():
+def test_transforms():
+    # Test initial Rating
     pmap = build_player_map(PLAYERS)
-    #TODO
+    first_player = pmap.keys()[0] # Rating of first id
+    rating =  pmap[first_player]['rating']
+    assert type(rating) == type(Rating())
+    
+    # Test that rating has been serialized to dict
+    pmap = transform_ts_to_dict(pmap)
+    first_player = pmap.keys()[0] # Rating of first id
+    rating =  pmap[first_player]['rating']
+    assert type(rating) == dict
 
-
-def test_transform_dict_to_ts():
-    pmap = build_player_map(PLAYERS)
-    #TODO
+    # Test that rating has been deserialized back to Rating
+    pmap = transform_dict_to_ts(pmap)
+    first_player = pmap.keys()[0] # Rating of first id
+    rating =  pmap[first_player]['rating']
+    assert type(rating) == type(Rating())
 
 
 def test_process_map_data():
-    pass
-    #TODO
+    pmap = build_player_map(PLAYERS)
+    process_match_data(MATCHES, pmap)
+    for id, player_object in pmap.items():
+        # Test that players are no longer rated 0
+        assert player_object['rating'].mu != 0
