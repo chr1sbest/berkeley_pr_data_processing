@@ -135,11 +135,11 @@ def get_player_page(player_ids, matches):
                     outcome = 'loss'
                 tournament = match['match']['tournament_id']
                 if str(tournament) == '1976976':
-                    tournament = 'hacksmoney'
+                    tournament = 'bw1'
                 if str(tournament) == '1924093':
                     tournament = 'bw2'
                 else:
-                    tournament = 'bw1'
+                    tournament = 'hacks$'
                 date = match['match']['created_at']
                 curMatch= {'opp' : opponent, 'outcome' : outcome, 'tournament' : tournament, 'date': date}
                 playerPages[player]['matches'].append(curMatch)
