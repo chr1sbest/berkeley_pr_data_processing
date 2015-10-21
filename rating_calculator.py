@@ -138,6 +138,8 @@ def get_player_page(player_ids, matches):
                     tournament = 'bw1'
                 if str(tournament) == '1924093':
                     tournament = 'bw2'
+                if str(tournament) == '1995306':
+                    tournament = 'bw3'
                 else:
                     tournament = 'hacks$'
                 date = match['match']['created_at']
@@ -215,8 +217,8 @@ if __name__ == "__main__":
     pmap = build_player_map(players)
     pmap = process_match_data(matches, pmap)
     pmap = transform_ts_to_dict(pmap)
-    t1,t2,t3 = 'sabfa2015bw1', 'sabfa2015bw2', 'calhacksmoney' 
-    matchList = get_all_matches(t1,t2,t3)
-    pids = get_player_ids_consolidated('bw2User_id.json', 'hacksmoneyUser_ids.json', '1924093.json')
+    t1,t2,t3,t4 = 'sabfa2015bw1', 'sabfa2015bw2', 'calhacksmoney', 'sabfa2015bw3'
+    matchList = get_all_matches(t1,t2,t3,t4)
+    pids = get_player_ids_consolidated('bw2User_id.json', 'hacksmoneyUser_ids.json', '1924093.json', '1995306.json')
     playerPages = get_player_page(pids, matchList)
     final = player_page_helper(playerPages)
